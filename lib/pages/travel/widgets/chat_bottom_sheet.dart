@@ -43,7 +43,7 @@ class ChatActionSheetContent extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: Colors.white.withAlpha(200),
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(16.0),
           topRight: Radius.circular(16.0),
         ),

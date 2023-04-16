@@ -189,7 +189,7 @@ class BoardingByWidget extends StatelessWidget {
       circular: 20,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Image.asset(
-        "images/ticket_icon.png",
+        "images/take_icon.png",
         height: 30,
         width: 45,
         errorBuilder: (context, error, stackTrace) => Container(

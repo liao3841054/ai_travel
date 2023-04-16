@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sq_chatgpt/pages/travel/index.dart';
 
 import 'shadow_white_container.dart';
 
@@ -34,20 +36,39 @@ class ChatBottomBar extends StatelessWidget {
             ),
             Expanded(
                 child: TextField(
+              decoration: const InputDecoration(
+                  border: InputBorder.none,
+                  contentPadding: EdgeInsets.only(bottom: 5),
+                  hintText: "开始规划你行程",
+                  hintStyle: TextStyle(
+                      color: Color.fromRGBO(153, 153, 153, 1), fontSize: 14)),
               enabled: enabled,
             )),
-            Container(
-              width: 55,
-              height: 44,
-              decoration: BoxDecoration(
-                  color: Color.fromRGBO(250, 201, 203, 1),
-                  borderRadius: BorderRadius.circular(25)),
-              child: Center(
-                child: Image.asset(
-                  "images/send_icon.png",
-                  fit: BoxFit.fitHeight,
-                  width: 25,
-                  height: 25,
+            GestureDetector(
+              onTap: () {
+                print("点击了发送按钮");
+
+                Get.find<TravelController>().reShowPlan();
+              },
+              child: Container(
+                width: 55,
+                height: 44,
+                decoration: BoxDecoration(
+                    // color: const Color.fromRGBO(250, 201, 203, 1),
+                    // 渐变色
+                    gradient: const LinearGradient(
+                      colors: [Color(0xffE9DEF4), Color(0xffF2B7A9)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    borderRadius: BorderRadius.circular(25)),
+                child: Center(
+                  child: Image.asset(
+                    "images/send_icon.png",
+                    fit: BoxFit.fitHeight,
+                    width: 21,
+                    height: 21,
+                  ),
                 ),
               ),
             )

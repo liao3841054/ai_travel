@@ -7,6 +7,8 @@ class TravelController extends GetxController {
 
   final state = TravelState();
 
+  var showPlan = false.obs;
+
   // tap
   void handleTap(int index) {
     Get.snackbar(
@@ -37,5 +39,9 @@ class TravelController extends GetxController {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void reShowPlan() {
+    showPlan.value = true;
   }
 }

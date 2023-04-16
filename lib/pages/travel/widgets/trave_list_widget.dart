@@ -15,123 +15,133 @@ class TraveListWidget extends GetView<TravelController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        height: double.infinity,
-        width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 15),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const HeaderWidget(),
-            const SizedBox(
-              height: 10,
-            ),
-
-            ///一个大的Text 文本标题，黑色字体
-            Container(
-              margin: const EdgeInsets.only(left: 10, top: 10),
-              alignment: Alignment.centerLeft,
-              child: const Text(
-                "Plan your trip \nwith Ai asistance",
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontFamily: 'Roboto', // 指定使用 Roboto 字体
-                  fontWeight: FontWeight.w200,
-                  fontSize: 25,
-                ),
+    return Stack(
+      children: [
+        Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            decoration: const BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage('images/bg.png'),
+                fit: BoxFit.cover,
               ),
+              // 阴影
             ),
-
-            // 一个圆角矩形，里面左边一个无边框图片，右边是Column布局的 文字标题 描述
-            const SizedBox(
-              height: 15,
-            ),
-
-            TravelTimeWidget(),
-
-            const SizedBox(
-              height: 25,
-            ),
-            Row(
+            child: Column(
               children: [
-                GestureDetector(
-                    onTap: () {
-                      Get.toNamed(Routes.kCheckBoxcreen);
-                    },
-                    child: CheckBoxListWidget()),
                 const SizedBox(
-                  width: 15,
+                  height: 20,
                 ),
-                Expanded(child: MapWidget())
+                const HeaderWidget(),
+                const SizedBox(
+                  height: 10,
+                ),
+
+                ///一个大的Text 文本标题，黑色字体
+                Container(
+                  margin: const EdgeInsets.only(left: 10, top: 10),
+                  alignment: Alignment.centerLeft,
+                  child: const Text(
+                    "Plan your trip \nwith Ai asistance",
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontFamily: 'Roboto', // 指定使用 Roboto 字体
+                      fontWeight: FontWeight.w200,
+                      fontSize: 25,
+                    ),
+                  ),
+                ),
+                Obx(() {
+                  return controller.showPlan == true
+                      ? Expanded(child: Column(children: buildPlanData()))
+                      : Container();
+                }),
+                // 一个圆角矩形，里面左边一个无边框图片，右边是Column布局的 文字标题 描述
               ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            ShadowWhiteContainer(
-              height: 110,
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.all(15.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Tips", style: TextStyle(color: Colors.black)),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    Column(
-                      children: const [
-                        Text(
-                            "•云南观在光照强烈，速议出行帮上足坊的防酒獨 \n•北京南站现在十分網诺。建改 16:50 就出发。以免塔车",
-                            style:
-                                TextStyle(color: Colors.black87, fontSize: 12)),
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            const Spacer(),
-
-            GestureDetector(
-                onTap: () {
-                  // Get.to(ChatBottomSheet());
-                  showModalBottomSheet(
-                    context: context,
-                    backgroundColor: Colors.transparent,
-                    builder: (BuildContext context) {
-                      return const ChatActionSheetContent();
-                    },
-                  );
-                },
-                child: const ChatBottomBar(
-                  enabled: false,
-                )),
-
-            const SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg.png'),
-            fit: BoxFit.cover,
-          ),
-          // 阴影
-        ));
+            )),
+        Positioned(
+          bottom: 30,
+          left: 30,
+          right: 30,
+          child: GestureDetector(
+              onTap: () {
+                // Get.to(ChatBottomSheet());
+                showModalBottomSheet(
+                  context: context,
+                  backgroundColor: Colors.transparent,
+                  builder: (BuildContext context) {
+                    return const ChatActionSheetContent();
+                  },
+                );
+              },
+              child: const ChatBottomBar(
+                enabled: false,
+              )),
+        )
+      ],
+    );
   }
-  // 紫色渐变
 
+  List<Widget> buildPlanData() {
+    return [
+      const SizedBox(
+        height: 15,
+      ),
+      TravelTimeWidget(),
+      const SizedBox(
+        height: 25,
+      ),
+      Row(
+        children: [
+          GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.kCheckBoxcreen);
+              },
+              child: CheckBoxListWidget()),
+          const SizedBox(
+            width: 15,
+          ),
+          Expanded(child: MapWidget())
+        ],
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      ShadowWhiteContainer(
+        height: 110,
+        width: double.infinity,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Tips", style: TextStyle(color: Colors.black)),
+              const SizedBox(
+                height: 5,
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              Column(
+                children: const [
+                  Text("•云南观在光照强烈，速议出行帮上足坊的防酒獨 \n•北京南站现在十分網诺。建改 16:50 就出发。以免塔车",
+                      style: TextStyle(color: Colors.black87, fontSize: 12)),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+      const SizedBox(
+        height: 20,
+      ),
+      const Spacer(),
+      const SizedBox(
+        height: 20,
+      )
+    ];
+  }
 }
 
 class MapWidget extends StatelessWidget {
@@ -160,12 +170,12 @@ class MapWidget extends StatelessWidget {
                 height: 5,
               ),
               ShadowWhiteContainer(
+                height: 50,
+                width: double.infinity,
                 child: Image.asset(
                   "images/travel_map_icon.png",
                   fit: BoxFit.fitHeight,
                 ),
-                height: 50,
-                width: double.infinity,
               ),
               const SizedBox(
                 height: 10,

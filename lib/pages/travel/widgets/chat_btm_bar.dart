@@ -36,6 +36,7 @@ class ChatBottomBar extends StatelessWidget {
             ),
             Expanded(
                 child: TextField(
+              controller: Get.find<TravelController>().textFieldController,
               decoration: const InputDecoration(
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.only(bottom: 5),
@@ -47,8 +48,11 @@ class ChatBottomBar extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 print("点击了发送按钮");
+                TextEditingController textController =
+                    Get.find<TravelController>().textFieldController;
 
-                Get.find<TravelController>().reShowPlan();
+                Get.find<TravelController>()
+                    .sendChatMessage(textController.text);
               },
               child: Container(
                 width: 55,

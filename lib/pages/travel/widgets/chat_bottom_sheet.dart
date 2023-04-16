@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sq_chatgpt/pages/travel/index.dart';
+import 'package:sq_chatgpt/widgets/sq_text.dart';
 
 import 'chat_btm_bar.dart';
 
@@ -40,34 +42,54 @@ class ChatActionSheetContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white.withAlpha(200),
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(16.0),
-          topRight: Radius.circular(16.0),
+    return Scaffold(
+      bottomNavigationBar:
+          Container(color: Colors.white, child: const ChatBottomBar()),
+      backgroundColor: Colors.white,
+      body: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(16.0),
+            topRight: Radius.circular(16.0),
+          ),
         ),
-      ),
-      padding:
-          EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              ChatItem(
-                text: "我想去云南旅行我想去云南旅行我想去云南旅行我想去云南旅行我想去云南旅行，",
-                isChatBot: false,
-              ),
-              ChatItem(
-                text: "我想去云南旅行我想去云南旅行我想去云南旅行我想去云南旅行我想去云南旅行，",
-                isChatBot: true,
-              ),
-              SizedBox(height: 16.0),
-              ChatBottomBar()
-            ],
+        padding:
+            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
+        child: SingleChildScrollView(
+          controller: Get.find<TravelController>().scrollController,
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Obx(() {
+                  return Column(
+                    children: Get.find<TravelController>().messageList.map((e) {
+                      ChatMessage message = e;
+                      return ChatItem(
+                        text: message.messageContent,
+                        isChatBot: message.isAnswer,
+                      );
+                    }).toList(),
+                  );
+                }),
+                const SizedBox(height: 16.0),
+                Obx(() {
+                  return Get.find<TravelController>().showPlanButton == true
+                      ? TextButton(
+                          onPressed: () {
+                            Get.find<TravelController>().reShowPlan();
+                          },
+                          child: const SQText(
+                            "生成行程🚗",
+                            color: Colors.blue,
+                          ))
+                      : Container();
+                })
+              ],
+            ),
           ),
         ),
       ),

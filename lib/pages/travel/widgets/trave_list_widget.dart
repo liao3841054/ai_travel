@@ -125,7 +125,7 @@ class TraveListWidget extends GetView<TravelController> {
               ),
               Column(
                 children: const [
-                  Text("•云南观在光照强烈，速议出行帮上足坊的防酒獨 \n•北京南站现在十分網诺。建改 16:50 就出发。以免塔车",
+                  Text("•香港观在光照强烈，速议出行帮上足坊的防酒獨 \n•北京南站现在十分網诺。建改 16:50 就出发。以免塔车",
                       style: TextStyle(color: Colors.black87, fontSize: 12)),
                 ],
               )
@@ -506,7 +506,7 @@ class TravelTimeWidget extends StatelessWidget {
                             color: Color(0xffBBB0EA),
                             child: Padding(
                               padding: EdgeInsets.all(8.0),
-                              child: Text("云南之旅",
+                              child: Text("香港之旅",
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 10,
@@ -537,7 +537,7 @@ class TravelTimeWidget extends StatelessWidget {
                       const SizedBox(
                         height: 14,
                       ),
-                      const Text("云南之旅",
+                      const Text("香港之旅",
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 16,

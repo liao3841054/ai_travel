@@ -234,7 +234,7 @@ class TimelineTicketWidget extends StatelessWidget {
                       ),
                     ),
                     SQText(
-                      "云南北",
+                      "香港北",
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),

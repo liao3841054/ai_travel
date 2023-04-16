@@ -55,7 +55,7 @@ class CheckBoxListWidget extends StatelessWidget {
           children: [
             const Text("Check Box",
                 style: TextStyle(color: Colors.black, fontSize: 16)),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Column(

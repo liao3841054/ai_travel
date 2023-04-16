@@ -166,6 +166,20 @@ class CommUtils {
     return false;
   }
 
+  static Future<void> openMap(double latitude, double longitude) async {
+    // final url =
+    // 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    final url =
+        'https://api.map.baidu.com/marker?location=$latitude,$longitude&output=html';
+
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      // throw 'Could not launch $url';
+      CommUtils.showMessage('Could not launch $url');
+    }
+  }
+
   // String _parseVersionFromPubspec() {
   //   final String yamlString = rootBundle.loadString('pubspec.yaml').toString();
   //   final Map<dynamic, dynamic> yamlMap = loadYaml(yamlString);

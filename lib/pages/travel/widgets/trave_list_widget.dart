@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sq_chatgpt/route.dart';
+import 'package:sq_chatgpt/util/comm_util.dart';
 
 import '../index.dart';
 import 'chat_bottom_sheet.dart';
@@ -63,52 +64,7 @@ class TraveListWidget extends GetView<TravelController> {
                 const SizedBox(
                   width: 15,
                 ),
-                Expanded(
-                  child: ShadowWhiteContainer(
-                    // width: 100,
-                    height: 160,
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Next to do",
-                              style: TextStyle(color: Colors.black)),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          const Text("去北京南站",
-                              style: TextStyle(color: Colors.black)),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          ShadowWhiteContainer(
-                            child: Image.asset(
-                              "images/travel_map_icon.png",
-                              fit: BoxFit.fitHeight,
-                            ),
-                            height: 50,
-                            width: double.infinity,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          Row(
-                            children: [
-                              Spacer(),
-                              IconTextWidget(
-                                text: "38 sunny",
-                                icon: Icons.sunny,
-                                fontSize: 8,
-                                iconSize: 10,
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
-                )
+                Expanded(child: MapWidget())
               ],
             ),
             const SizedBox(
@@ -167,23 +123,6 @@ class TraveListWidget extends GetView<TravelController> {
           ],
         ),
         decoration: BoxDecoration(
-          // color: Colors.white,
-          // borderRadius: BorderRadius.circular(10),
-          ///渐变色
-          // gradient: LinearGradient(
-          //   begin: Alignment.topCenter,
-          //   end: Alignment.bottomCenter,
-          //   colors: [
-          //     Colors.white.withAlpha(220),
-          //     Colors.white.withAlpha(220),
-          //     // Colors.purple,
-          //     const Color.fromARGB(255, 161, 173, 219),
-          //     const Color.fromARGB(255, 163, 127, 177),
-
-          //     Colors.white.withAlpha(220),
-          //     Colors.white.withAlpha(220),
-          //   ],
-          // ),
           image: DecorationImage(
             image: AssetImage('images/bg.png'),
             fit: BoxFit.cover,
@@ -193,6 +132,61 @@ class TraveListWidget extends GetView<TravelController> {
   }
   // 紫色渐变
 
+}
+
+class MapWidget extends StatelessWidget {
+  const MapWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        CommUtils.openMap(39.865862, 116.378956);
+      },
+      child: ShadowWhiteContainer(
+        // width: 100,
+        height: 160,
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Next to do", style: TextStyle(color: Colors.black)),
+              const SizedBox(
+                height: 5,
+              ),
+              const Text("去北京南站", style: TextStyle(color: Colors.black)),
+              const SizedBox(
+                height: 5,
+              ),
+              ShadowWhiteContainer(
+                child: Image.asset(
+                  "images/travel_map_icon.png",
+                  fit: BoxFit.fitHeight,
+                ),
+                height: 50,
+                width: double.infinity,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                children: [
+                  Spacer(),
+                  IconTextWidget(
+                    text: "38 sunny",
+                    icon: Icons.sunny,
+                    fontSize: 8,
+                    iconSize: 10,
+                  )
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class CheckBoxListWidget extends StatelessWidget {
@@ -366,23 +360,38 @@ class MyCheckbox extends StatefulWidget {
 }
 
 class _MyCheckboxState extends State<MyCheckbox> {
+  bool _checked = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checked = widget.isChecked;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 4),
-      child: Row(
-        children: [
-          Icon(
-            widget.isChecked ? Icons.check_box : Icons.check_box_outline_blank,
-            color: Colors.black38,
-            size: 15,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-          Text(widget.title,
-              style: const TextStyle(color: Colors.black, fontSize: 12)),
-        ],
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            _checked = !_checked;
+          });
+        },
+        child: Row(
+          children: [
+            Icon(
+              _checked ? Icons.check_box : Icons.check_box_outline_blank,
+              color: Colors.black38,
+              size: 15,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Text(widget.title,
+                style: const TextStyle(color: Colors.black, fontSize: 12)),
+          ],
+        ),
       ),
     );
   }

@@ -7,8 +7,8 @@ import '../../travel/widgets/icon_text_widget.dart';
 import '../index.dart';
 
 /// hello
-class HelloWidget extends GetView<TravelTimelineController> {
-  const HelloWidget({Key? key}) : super(key: key);
+class TimelineListWidget extends GetView<TravelTimelineController> {
+  const TimelineListWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,21 +28,85 @@ class HelloWidget extends GetView<TravelTimelineController> {
         children: [
           const NavBackBar(),
           const TimelineTitleWidget(),
-          TimelineTicketWidget(),
-          SizedBox(
-            height: 12,
-          ),
-          BoardingByWidget(),
-          SizedBox(
-            height: 12,
-          ),
-          TimelineMapWidget(),
-          SizedBox(
-            height: 12,
-          ),
-          TimelinePlace()
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                width: 40,
+                child: Column(
+                  children: [
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    const LeftLineDotWidget(),
+                    const LineWidget(
+                      height: 150,
+                    ),
+                    const LeftLineDotWidget(),
+                    const LineWidget(
+                      height: 60,
+                    ),
+                    const LeftLineDotWidget(),
+                    const LineWidget(
+                      height: 60,
+                    ),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: const [
+                    TimelineTicketWidget(),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    BoardingByWidget(),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    TimelineMapWidget(),
+                    SizedBox(
+                      height: 12,
+                    ),
+                    TimelinePlace(),
+                  ],
+                ),
+              ),
+            ],
+          )
         ],
       ),
+    );
+  }
+}
+
+class LeftLineDotWidget extends StatelessWidget {
+  const LeftLineDotWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 10,
+      width: 10,
+      decoration: const BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color(0xffA862FF),
+      ),
+    );
+  }
+}
+
+class LineWidget extends StatelessWidget {
+  final double height;
+  const LineWidget({super.key, required this.height});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: height,
+      width: 2,
+      color: Color(0xffA862FF),
     );
   }
 }
@@ -125,7 +189,7 @@ class BoardingByWidget extends StatelessWidget {
       circular: 20,
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
       child: Image.asset(
-        "images/take_icon.png",
+        "images/ticket_icon.png",
         height: 30,
         width: 45,
         errorBuilder: (context, error, stackTrace) => Container(

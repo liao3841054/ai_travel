@@ -9,7 +9,7 @@ class TravelTimelinePage extends GetView<TravelTimelineController> {
 
   // 主视图
   Widget _buildView() {
-    return const HelloWidget();
+    return const TimelineListWidget();
   }
 
   @override

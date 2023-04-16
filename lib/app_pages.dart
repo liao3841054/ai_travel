@@ -1,9 +1,9 @@
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:sq_chatgpt/pages/checkbox_list/index.dart';
 import 'package:sq_chatgpt/pages/travel/index.dart';
 import 'package:sq_chatgpt/pages/travel_timeline/index.dart';
 import 'package:sq_chatgpt/route.dart';
 
-import 'pages/chat/index.dart';
 import 'pages/login/login_page.dart';
 
 abstract class AppPages {
@@ -20,5 +20,9 @@ abstract class AppPages {
         name: Routes.kTravelTimelineScreen,
         page: () => const TravelTimelinePage(),
         binding: TravelTimelineBinding()),
+    GetPage(
+        name: Routes.kCheckBoxcreen,
+        page: () => const CheckboxListPage(),
+        binding: CheckboxListBinding()),
   ];
 }

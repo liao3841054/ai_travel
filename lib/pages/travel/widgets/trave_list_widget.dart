@@ -55,39 +55,11 @@ class TraveListWidget extends GetView<TravelController> {
             ),
             Row(
               children: [
-                ShadowWhiteContainer(
-                  width: 100,
-                  height: 160,
-                  child: Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      children: [
-                        const Text("Check Box",
-                            style: TextStyle(color: Colors.black)),
-                        Column(
-                          children: const [
-                            MyCheckbox(
-                              title: "签证",
-                              isChecked: false,
-                            ),
-                            MyCheckbox(
-                              title: "护照",
-                              isChecked: false,
-                            ),
-                            MyCheckbox(
-                              title: "转借口",
-                              isChecked: false,
-                            ),
-                            MyCheckbox(
-                              title: "信用卡 ",
-                              isChecked: true,
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+                GestureDetector(
+                    onTap: () {
+                      Get.toNamed(Routes.kCheckBoxcreen);
+                    },
+                    child: CheckBoxListWidget()),
                 const SizedBox(
                   width: 15,
                 ),
@@ -221,6 +193,46 @@ class TraveListWidget extends GetView<TravelController> {
   }
   // 紫色渐变
 
+}
+
+class CheckBoxListWidget extends StatelessWidget {
+  const CheckBoxListWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ShadowWhiteContainer(
+      width: 100,
+      height: 160,
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            const Text("Check Box", style: TextStyle(color: Colors.black)),
+            Column(
+              children: const [
+                MyCheckbox(
+                  title: "签证",
+                  isChecked: false,
+                ),
+                MyCheckbox(
+                  title: "护照",
+                  isChecked: false,
+                ),
+                MyCheckbox(
+                  title: "转借口",
+                  isChecked: false,
+                ),
+                MyCheckbox(
+                  title: "信用卡 ",
+                  isChecked: true,
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class HeaderWidget extends StatelessWidget {

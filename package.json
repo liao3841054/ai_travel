@@ -1,0 +1,31 @@
+{
+    "name": "@10xai/app",
+    "version": "1.3.1",
+    "description": "语音行程APP工具",
+    "main": "index.js",
+    "directories": {
+      "lib": "lib",
+      "test": "test"
+    },
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "files": [
+      "web/*"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/liao3841054/10xAI.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+      "url": "https://github.com/liao3841054/10xAI/issues"
+    },
+    "homepage": "https://github.com/liao3841054/10xAI#readme",
+    "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+    }
+  }

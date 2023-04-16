@@ -1,0 +1,41 @@
+PODS:
+  - flutter_macos_webview (0.0.4):
+    - FlutterMacOS
+  - FlutterMacOS (1.0.0)
+  - in_app_review (0.2.0):
+    - FlutterMacOS
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - url_launcher_macos (0.0.1):
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - flutter_macos_webview (from `Flutter/ephemeral/.symlinks/plugins/flutter_macos_webview/macos`)
+  - FlutterMacOS (from `Flutter/ephemeral`)
+  - in_app_review (from `Flutter/ephemeral/.symlinks/plugins/in_app_review/macos`)
+  - path_provider_foundation (from `Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/macos`)
+  - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+
+EXTERNAL SOURCES:
+  flutter_macos_webview:
+    :path: Flutter/ephemeral/.symlinks/plugins/flutter_macos_webview/macos
+  FlutterMacOS:
+    :path: Flutter/ephemeral
+  in_app_review:
+    :path: Flutter/ephemeral/.symlinks/plugins/in_app_review/macos
+  path_provider_foundation:
+    :path: Flutter/ephemeral/.symlinks/plugins/path_provider_foundation/macos
+  url_launcher_macos:
+    :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+
+SPEC CHECKSUMS:
+  flutter_macos_webview: a17978522d9014b5ebc0279d76a332b9531c4a95
+  FlutterMacOS: ae6af50a8ea7d6103d888583d46bd8328a7e9811
+  in_app_review: a850789fad746e89bce03d4aeee8078b45a53fd0
+  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
+  url_launcher_macos: 5335912b679c073563f29d89d33d10d459f95451
+
+PODFILE CHECKSUM: 5b880e12bd04a99f5d6ffc06d4a0958a56d2090b
+
+COCOAPODS: 1.12.0

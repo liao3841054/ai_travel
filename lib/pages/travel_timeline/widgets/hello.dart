@@ -24,11 +24,115 @@ class HelloWidget extends GetView<TravelTimelineController> {
         // 阴影
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const NavBackBar(),
           const TimelineTitleWidget(),
           TimelineTicketWidget(),
+          SizedBox(
+            height: 12,
+          ),
+          BoardingByWidget(),
+          SizedBox(
+            height: 12,
+          ),
+          TimelineMapWidget(),
+          SizedBox(
+            height: 12,
+          ),
+          TimelinePlace()
         ],
+      ),
+    );
+  }
+}
+
+class TimelinePlace extends StatelessWidget {
+  const TimelinePlace({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: ShadowWhiteContainer(
+              circular: 20,
+              padding: const EdgeInsets.symmetric(horizontal: 23, vertical: 20),
+              child: SQText(
+                "大理湖",
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              )),
+        ),
+        SizedBox(
+          width: 12,
+        ),
+        ShadowWhiteContainer(
+            circular: 20,
+            width: 73,
+            height: 60,
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+            child: Center(
+                child: SQText(
+              "⚠️注意防晒",
+              fontSize: 6,
+            ))),
+      ],
+    );
+  }
+}
+
+class TimelineMapWidget extends StatelessWidget {
+  const TimelineMapWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ShadowWhiteContainer(
+        circular: 20,
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+        width: 244,
+        child: Row(
+          children: [
+            SQText(
+              "威斯汀酒店 ",
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+            ),
+            SizedBox(
+              width: 42,
+            ),
+            Image.asset(
+              "images/travel_small_map_icon.png",
+              height: 35,
+              width: 79,
+              errorBuilder: (context, error, stackTrace) => Container(
+                color: Colors.white,
+                width: 10,
+                height: 10,
+              ),
+            ),
+          ],
+        ));
+  }
+}
+
+class BoardingByWidget extends StatelessWidget {
+  const BoardingByWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ShadowWhiteContainer(
+      circular: 20,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+      child: Image.asset(
+        "images/take_icon.png",
+        height: 30,
+        width: 45,
+        errorBuilder: (context, error, stackTrace) => Container(
+          color: Colors.white,
+          width: 10,
+          height: 10,
+        ),
       ),
     );
   }
@@ -48,13 +152,23 @@ class TimelineTicketWidget extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SQText(
                       "北京南站",
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                    Spacer(),
+                    Image.asset(
+                      "images/ticket_icon.png",
+                      height: 30,
+                      width: 45,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        color: Colors.white,
+                        width: 10,
+                        height: 10,
+                      ),
+                    ),
                     SQText(
                       "云南北",
                       fontSize: 16,
@@ -84,6 +198,9 @@ class TimelineTicketWidget extends StatelessWidget {
                       fontSize: 10,
                     ),
                   ],
+                ),
+                const SizedBox(
+                  height: 2,
                 ),
                 Row(
                   children: [
